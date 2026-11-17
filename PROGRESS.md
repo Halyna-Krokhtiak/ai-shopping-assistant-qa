@@ -13,6 +13,8 @@ Newest entries go on top.
 - **Bot settings:** added `bot/config.py` with a frozen `Settings` dataclass and `load_settings()` that reads env variables with defaults; `.env.example` documents all variables.
 - **Verified manually:** defaults load; `OLLAMA_MODEL` switches the model without code changes; invalid `TEMPERATURE=abc` fails fast with a clear error; `ruff check .` passes.
 - **Editor:** VS Code formats Python with ruff on save.
+- **Catalog snapshot:** `scripts/fetch_catalog.py` fetches `mens-watches` and `sports-accessories` from DummyJSON and saves 23 products (9 fields each) to `data/catalog.json`.
+- **Verified:** fails fast if fewer products than `total` are returned (checked with `limit=2`); re-running produces an identical file; `ruff check .` passes.
 
 ### Decisions
 
@@ -20,10 +22,13 @@ Newest entries go on top.
 - **Config via env variables:** the same code runs with a different model or prompt version, which is needed for the regression demo; secrets will never live in code.
 - **Priority:** terminal env > `.env` > code defaults. `.env` is git-ignored; `.env.example` is committed.
 - **Fail fast on invalid values** instead of silently falling back to defaults, so a typo in config can't produce misleading test results.
+- **Categories:** watches + sports accessories instead of electronics, to make the project distinctive. Smartphone findings from 2026-11-16 stay as a "model without catalog" baseline.
+- **Fields:** only what the bot needs to answer customers (id, title, brand, category, price, stock, availabilityStatus, description, shippingInformation). Fewer fields = shorter prompt = faster, cheaper answers.
+- **Committed snapshot:** tests use a fixed `catalog.json`, so API changes or outages can't make tests flaky.
+- **`null` brands kept as-is** (17 sports items): the bot must say "not specified", not invent a brand. These become hallucination test cases.
 
 ### Next
 
-- [ ] Add `scripts/fetch_catalog.py` to save 20–30 products from DummyJSON to `data/catalog.json`.
 - [ ] Build `bot/bot.py` with system prompt `bot/prompts/v1.md`: answers only from the catalog, in the user's language.
 - [ ] Create the golden dataset in `data/golden/` (30+ cases: question, language, constraints, expected facts), based on today's findings.
 - [ ] Write the first tests for accuracy and hallucinations against the bot.
