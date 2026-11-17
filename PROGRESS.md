@@ -5,6 +5,31 @@ Newest entries go on top.
 
 ---
 
+## 2026-11-17
+
+### Done
+
+- **Project config:** added `pyproject.toml` with runtime dependencies (`requests`, `python-dotenv`), a `dev` group (`pytest`, `ruff`), and ruff/pytest settings. Install: `pip install -e ".[dev]"`.
+- **Bot settings:** added `bot/config.py` with a frozen `Settings` dataclass and `load_settings()` that reads env variables with defaults; `.env.example` documents all variables.
+- **Verified manually:** defaults load; `OLLAMA_MODEL` switches the model without code changes; invalid `TEMPERATURE=abc` fails fast with a clear error; `ruff check .` passes.
+- **Editor:** VS Code formats Python with ruff on save.
+
+### Decisions
+
+- **Ruff instead of flake8:** one tool for linting and formatting, covers flake8 rules, faster in CI.
+- **Config via env variables:** the same code runs with a different model or prompt version, which is needed for the regression demo; secrets will never live in code.
+- **Priority:** terminal env > `.env` > code defaults. `.env` is git-ignored; `.env.example` is committed.
+- **Fail fast on invalid values** instead of silently falling back to defaults, so a typo in config can't produce misleading test results.
+
+### Next
+
+- [ ] Add `scripts/fetch_catalog.py` to save 20–30 products from DummyJSON to `data/catalog.json`.
+- [ ] Build `bot/bot.py` with system prompt `bot/prompts/v1.md`: answers only from the catalog, in the user's language.
+- [ ] Create the golden dataset in `data/golden/` (30+ cases: question, language, constraints, expected facts), based on today's findings.
+- [ ] Write the first tests for accuracy and hallucinations against the bot.
+- [ ] Add a GitHub Actions workflow that runs ruff on every PR.
+- [ ] Write up the exploratory session in `docs/exploratory/`.
+
 ## 2026-11-16
 
 ### Done
