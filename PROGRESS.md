@@ -5,6 +5,29 @@ Newest entries go on top.
 
 ---
 
+## 2026-11-20 — Bot with system prompt v1
+
+### Done
+
+- bot/bot.py: CLI chat with Ollama, returns metadata (latency, tokens, done_reason);
+- bot/prompts/v1.md: system prompt with the catalog injected.
+
+### Findings (manual testing, qwen2.5:7b)
+
+- Catalog in prompt fixed price/brand hallucinations from the no-catalog baseline.
+- Mentioning specific languages in the prompt biased replies to Ukrainian.
+- Language-neutral rule fixed EN/ES replies, no UA->RU regression.
+- Self-contradictions remain: "no watches under $100" while naming one at $89.99.
+- Product names sometimes translated badly in Ukrainian replies.
+- First request after ~5 min idle takes ~100 s (model reload).
+
+### Next
+
+- [ ] Create the golden dataset in `data/golden/` (30+ cases ...), based on today's findings.
+- [ ] Write the first tests for accuracy and hallucinations against the bot.
+- [ ] Add a GitHub Actions workflow that runs ruff on every PR.
+- [ ] Write up the exploratory session in `docs/exploratory/`.
+
 ## 2026-11-17
 
 ### Done
