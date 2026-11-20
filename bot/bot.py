@@ -90,7 +90,11 @@ def main() -> None:
             break
         if not question:
             continue
-        resp = ask(question, settings)
+        try:
+            resp = ask(question, settings)
+        except requests.RequestException as e:
+            print(f"\n[error] {e}")
+            continue
         print(f"\nBot: {resp.text}")
         print(
             f"[latency: {resp.latency_s:.2f}s | "
