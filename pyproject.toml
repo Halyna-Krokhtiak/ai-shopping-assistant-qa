@@ -14,6 +14,7 @@ license = "MIT"
 dependencies = [
     "requests>=2.32",       # HTTP calls to the Ollama API
     "python-dotenv>=1.0",   # loads variables from a local .env file
+    "pyyaml>=6.0",
 ]
 
 # Tools needed only for development and CI, not to run the bot
