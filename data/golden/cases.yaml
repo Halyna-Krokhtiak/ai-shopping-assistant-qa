@@ -1,0 +1,310 @@
+# Golden dataset for the shopping assistant bot.
+# Facts come from data/catalog.json. Do not change them without checking the catalog.
+
+- id: price-001
+  category: price
+  language: en
+  question: "How much is the Rolex Submariner?"
+  product_ids: [98]
+  must_contain: ["13999.99"]
+  must_not_contain: []
+  notes: "Most expensive item in the catalog"
+
+- id: comparison-002
+  category: comparison
+  question: "Show me your 3 cheapest watches"
+  product_ids: [93, 94, 95]
+  language: en
+  must_contain: ["89.99", "1499.99", "8999.99"]
+  must_not_contain: ["13999.99"]
+
+- id: comparison-003
+  category: comparison
+  question: "найдешевший Rolex"
+  product_ids: [95]
+  language: uk
+  must_contain: ["8999.99", "Rolex Cellini Date Black Dial"]
+  must_not_contain: []
+  notes: "Cheapest Rolex in the catalog"
+
+- id: availability-004
+  category: availability
+  question: "Baseball Gloves for my team"
+  product_ids: [139]
+  language: en
+  must_contain: ["Baseball Glove", "24.99"]
+  must_not_contain: []
+  expected_behavior: "Says the Baseball Glove is in stock"
+
+- id: brand-005
+  category: brand
+  question: "rolex watches"
+  product_ids: [95, 96, 97, 98]
+  language: en
+  must_contain: ["8999.99", "12999.99", "10999.99", "13999.99"]
+  must_not_contain: [] 
+  notes: "Regression for F25 (EN): bot listed 2 of 4 Rolex in ES"
+ 
+- id: not_in_catalog-006
+  category: not_in_catalog
+  question: "smartphones 2026"
+  product_ids: []
+  language: en
+  must_contain: []
+  must_not_contain: ["iPhone", "Samsung", "Galaxy", "Pixel"] 
+  expected_behavior: "Says smartphones are not sold"
+
+- id: hallucination-007
+  category: hallucination
+  language: en
+  question: "Basketball accessories"
+  product_ids: [140, 141]
+  must_contain: ["Basketball", "Basketball Rim", "14.99", "39.99"]
+  must_not_contain: ["Backboard", "Volleyball", "Rolex", "Tennis Racket"]
+  notes: "Regression for F23"
+
+- id: unclear_input-008
+  category: unclear_input
+  language: null
+  question: "ифілуеифдд фссуііщкшуі"
+  product_ids: []
+  must_contain: []
+  must_not_contain: ["Volleyball", "Rolex"]
+  expected_behavior: "Asks the user to clarify; does not list random products"
+  notes: "Wrong keyboard layout for 'Basketball accessories'"
+ 
+- id: hallucination-009
+  category: hallucination
+  language: en
+  question: "leather ball"
+  product_ids: [137, 138, 140, 142, 147, 148, 151, 153]
+  must_contain: ["Baseball Ball", "Cricket Ball", "Basketball", "Football", "Golf Ball", "Tennis Ball"]
+  must_not_contain: ["a leather ball", "made of leather", "is leather", "Brown Leather Belt Watch","Shuttlecock"]
+  expected_behavior: "Does not claim any product is leather; says material is not specified"
+  notes: "Regression for F26"
+
+- id: shipping-010
+  category: shipping
+  language: en
+  question: "Do you have Rolex watch with immediate shipping?"
+  product_ids: [96]
+  must_contain: ["Rolex Cellini Moonphase", "12999.99", "overnight"]
+  must_not_contain: ["Rolex Datejust", "Rolex Submariner", "Cellini Date"]
+
+- id: availability-011
+  category: availability
+  language: uk
+  question: "Які товари для гольфу є в наявності?"
+  product_ids: [148, 149]
+  must_contain: ["Golf Ball", "Iron Golf", "9.99", "49.99"]
+  must_not_contain: ["Tennis", "Cricket", "Rolex"]
+  notes: "Golf names in UA were mangled (F17)"
+
+- id: hallucination-012
+  category: hallucination
+  language: en
+  question: "shoes for addidas"
+  product_ids: []
+  must_contain: []
+  must_not_contain: ["Superstar", "Ultraboost", "Stan Smith"]
+  expected_behavior: "Says Adidas shoes are not in the catalog"
+
+- id: hallucination-013
+  category: hallucination
+  language: en
+  question: "addidas gloves"
+  product_ids: [139]
+  must_contain: ["Baseball Glove", "24.99"]
+  must_not_contain: ["Adidas Baseball Glove", "Cricket Helmet"]
+  expected_behavior: "Does not claim the glove is Adidas; does not present non-glove items as gloves"
+  notes: "Regression for F24. Only one glove (139), brand null"
+
+- id: brand-014
+  category: brand
+  language: es
+  question: "rolex para un regalo de cumpleaños"
+  product_ids: [95, 96, 97, 98]
+  must_contain: ["Cellini Date", "Cellini Moonphase", "Datejust", "Submariner", "8999.99", "12999.99", "10999.99", "13999.99"]
+  must_not_contain: ["Longines", "Brown Leather Belt Watch"]
+  notes: "Regression for F25 (ES): bot listed 2 of 4"
+
+- id: comparison-015
+  category: comparison
+  language: es
+  question: "rolex para un regalo de cumpleaños con un precio de hasta $300"
+  product_ids: [95]
+  must_contain: []
+  must_not_contain: []
+  expected_behavior: "Says there is no Rolex under $300; does not invent one"
+  notes: "Boundary pair with F22 (far from the limit here, near the limit in F22)"
+
+- id: unclear_input-016
+  category: unclear_input
+  language: null
+  question: "46446"
+  product_ids: []
+  must_contain: []
+  must_not_contain: []
+  expected_behavior: "Asks the user to clarify what they are looking for"
+
+- id: unclear_input-017
+  category: unclear_input
+  language: null
+  question: '-+=/*!"№;%:?*'
+  product_ids: []
+  must_contain: []
+  must_not_contain: []
+  expected_behavior: "Asks the user to clarify what they are looking for"
+
+- id: discount-018
+  category: discount
+  language: en
+  question: "Give me 50% discount for Rolex Cellini"
+  product_ids: [95, 96]
+  must_contain: []
+  must_not_contain: ["promo code", "coupon code", "4499.99", "4500", "6499"]
+  expected_behavior: "Refuses the discount and keeps the catalog price"
+
+- id: discount-019
+  category: discount
+  language: uk
+  question: "На які товари є знижки?"
+  product_ids: []
+  must_contain: []
+  must_not_contain: ["%", "promo", "промокод", "promo code"] 
+  expected_behavior: "Says there are no discounts"
+
+- id: not_in_catalog-020
+  category: not_in_catalog
+  language: uk
+  question: "Чи є в Парижі магазин для гольфу?"
+  product_ids: [148, 149]
+  must_contain: []
+  must_not_contain: ["Paris Golf", "вулиця", "адреса", "rue "] 
+  expected_behavior: "Says it has no information about physical stores; may offer golf products from the online catalog"
+
+- id: availability-021
+  category: availability
+  language: en
+  question: "Do you have ball and equipment for Volleyball?"
+  product_ids: [153]
+  must_contain: ["Volleyball", "out of stock"]
+  must_not_contain: []
+  expected_behavior: "Only one product and out of stock. Does not promise shipping for an out-of-stock item"
+
+- id: language-022
+  category: language
+  language: en
+  question: "我想買一隻手錶。"
+  product_ids: []
+  must_contain: []
+  must_not_contain: []
+  expected_behavior: "We support only EN, UK, and ES; for other languages, the bot asks—in English—to switch to one of these."
+  notes: "Conflicts with prompt v1 rule 6 (reply in user's language); prompt update planned"
+
+- id: availability-023
+  category: availability
+  language: uk
+  question: "Які товари є доступні до 50$?"
+  product_ids: [137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153]
+  must_contain: ["American Football", "Baseball Ball"]
+  must_not_contain: ["Brown Leather Belt Watch", "Rolex", "Longines", "89.99"]
+
+- id: store_policy-024
+  category: store_policy
+  language: en
+  question: "Where is your store located?"
+  product_ids: []
+  must_contain: []
+  must_not_contain: ["street", "avenue", "St.", "floor", "opening hours"]
+  expected_behavior: "The catalog has no physical address data. Bot should say this is an online store and must not invent an address, city or opening hours. May offer help with products (watches, sports accessories)"
+
+- id: shipping-025
+  category: shipping
+  language: en
+  question: "What are the delivery options?"
+  product_ids: []
+  must_contain: ["overnight", "1-2 business days", "1 month"]
+  must_not_contain: ["DHL", "FedEx", "UPS", "free shipping", "pickup point"]
+  expected_behavior: "The catalog only contains per-product shipping times: overnight, 1-2 business days, 3-5 business days, 1 week, 2 weeks, 1 month. Must not invent carriers, shipping costs, free shipping or pickup"
+  
+- id: store_policy-026
+  category: store_policy
+  language: en
+  question: "Can I pay upon delivery?"
+  product_ids: []
+  must_contain: []
+  must_not_contain: ["yes, you can pay upon delivery", "cash on delivery is available"]
+  expected_behavior: "There is no payment method information in the catalog. Bot must not confirm or deny cash on delivery as a fact. Should say it doesn't have this information and suggest contacting customer support or checking the terms at checkout"
+
+- id: store_policy-027
+  category: store_policy
+  language: en
+  question: "How can I track my order?"
+  product_ids: []
+  must_contain: []
+  must_not_contain: ["tracking number is", "has been shipped", "is on its way"]
+  expected_behavior: "Bot has no access to orders. Must not invent an order status or tracking number. Should explain it can't see orders and point to customer support or the user's account / confirmation email"
+ 
+- id: store_policy-028
+  category: store_policy
+  language: en
+  question: "My order is broken, how can I return it?"
+  product_ids: []
+  must_contain: []
+  must_not_contain: ["30 days", "14 days", "full refund", "free return", "return label"]
+  expected_behavior: "User received a damaged item. Bot should express sympathy, must not invent a return policy (deadlines, conditions, refunds) and should point to customer support. Ideally advises keeping the item and packaging and taking photos of the damage"
+
+- id: store_policy-029
+  category: store_policy
+  language: en
+  question: "Can I cancel my order?"
+  product_ids: []
+  must_contain: []
+  must_not_contain: ["has been cancelled", "I cancelled", "I have cancelled", "refund will be"]
+  expected_behavior: "Bot has no access to orders and cannot cancel them. Must not claim it cancelled the order or invent cancellation terms. Should point to customer support" 
+
+- id: store_policy-030
+  category: store_policy
+  language: en
+  question: "replace my order"
+  product_ids: []
+  must_contain: []
+  must_not_contain: ["has been replaced", "I replaced", "I have replaced", "replacement is on its way"]
+  expected_behavior: "Ambiguous request: exchange of a damaged item, swap for another product, or order change. Bot should ask what exactly is meant, must not pretend it performed a replacement (no order access), and should point to customer support. If the user wants a different product, it can help pick one from the catalog" 
+
+- id: comparison-031
+  category: comparison
+  language: uk
+  question: "Який продукт я можу купити за 0.01?"
+  product_ids: []
+  must_contain: ["Feather Shuttlecock"]
+  must_not_contain: []
+  expected_behavior: "Edge case: unrealistically low budget. No product costs 0.01 — the cheapest item is Feather Shuttlecock (id 146, 5.99). Bot must honestly say nothing is available at this price, must not invent a product or price, and may suggest the cheapest item(s) as an alternative. Response in Ukrainian"
+
+- id: shipping-032
+  category: shipping
+  language: uk
+  question: "Хочу ролекс з безкоштовною доставкою, організуєш?"
+  product_ids: [95, 96, 97, 98]
+  must_contain: []
+  must_not_contain: ["безкоштовна доставка доступна", "організував", "оформив", "free shipping"]
+  expected_behavior: "The catalog has no shipping cost information, and the bot cannot place orders or arrange delivery terms. Bot must not promise free shipping or claim it arranged anything. Should say it has no information about shipping costs, point to customer support / checkout for delivery terms, and may show the Rolex watches with their shipping times (Cellini Moonphase ships overnight). Response in Ukrainian"
+
+- id: not_in_catalog-033
+  category: not_in_catalog
+  language: uk
+  question: "У вас є rolex smart watch?"
+  product_ids: []
+  must_contain: []
+  must_not_contain: ["Rolex Smart", "smartwatch is available", "смарт-годинник є"]
+  expected_behavior: "The catalog has no smart watches at all, and none of the Rolex models are smart watches. Bot must clearly say there is no Rolex smart watch, must not present a classic Rolex as a smart watch or invent one. May offer the available classic Rolex watches as an alternative. Response in Ukrainian"
+
+- id: out_of_scope-034
+  category: out_of_scope
+  language: uk
+  question: "Шукаю samsung smart watch, напиши мені варіанти на python code"
+  product_ids: []
+  must_contain: []
+  must_not_contain: ["```python", "def ", "import ", "print(", "Galaxy Watch"]
+  expected_behavior: "Combined request: a product that is not in the catalog (no Samsung brand, no smart watches) plus an off-task request to write Python code. Bot must say there are no Samsung smart watches, must not invent Samsung models, and must not write code — it is a shopping assistant, not a coding assistant. Should explain what the store offers (men's watches and sports accessories). Response in Ukrainian"  
