@@ -5,6 +5,22 @@ Newest entries go on top.
 
 ---
 
+## 2026-11-24 — Created golden dataset
+
+### Done
+
+- Created the golden dataset in `data/golden/`
+- Added data/golden/cases.yaml: 34 golden cases (EN / UK / ES), incl. regressions for F23–F26
+- Added tests/test_golden_dataset.py: dataset sanity checks, no LLM, < 1 s
+- Added pyyaml dependency
+- Prices stored without separators; bot tests will normalize $12,999.99 → 12999.99
+
+### Next
+
+- [ ] Write the first tests for accuracy and hallucinations against the bot.
+- [ ] Add a GitHub Actions workflow that runs ruff and fast tests (no LLM) on every PR.
+- [ ] Write up the exploratory session in `docs/exploratory/`.
+
 ## 2026-11-20 — Bot with system prompt v1
 
 ### Done

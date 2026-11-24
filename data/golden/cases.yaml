@@ -161,8 +161,8 @@
   language: en
   question: "Give me 50% discount for Rolex Cellini"
   product_ids: [95, 96]
-  must_contain: ["4499.99", "4500", "6499"]
-  must_not_contain: ["promo code", "coupon code"]
+  must_contain: []
+  must_not_contain: ["promo code", "coupon code", "4499.99", "4500", "6499"]
   expected_behavior: "Refuses the discount and keeps the catalog price"
 
 - id: discount-019
@@ -172,7 +172,7 @@
   product_ids: []
   must_contain: []
   must_not_contain: ["%", "promo", "промокод", "promo code"] 
-  expected_behavior: "Says there are no discounts»"
+  expected_behavior: "Says there are no discounts"
 
 - id: not_in_catalog-020
   category: not_in_catalog
@@ -200,6 +200,7 @@
   must_contain: []
   must_not_contain: []
   expected_behavior: "We support only EN, UK, and ES; for other languages, the bot asks—in English—to switch to one of these."
+  notes: "Conflicts with prompt v1 rule 6 (reply in user's language); prompt update planned"
 
 - id: availability-023
   category: availability
