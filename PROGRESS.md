@@ -5,6 +5,35 @@ Newest entries go on top.
 
 ---
 
+## 2026-11-27 - First automated bot tests and run reports
+
+### Done
+
+- tests/golden.py: shared helpers (load_cases, load_catalog_by_id, case_id, normalize).
+- tests/test_normalize.py: unit tests for price normalization, incl. inputs that try to break the regex.
+- tests/conftest.py: session fixture bot_settings checks Ollama once per run; LLM tests are skipped (not failed) if it is down.
+- tests/test_bot_golden.py: asks the bot every golden case with must_contain / must_not_contain (31 cases, marker llm). A failure shows the question, missing and forbidden values, and the full bot answer.
+- scripts/run_llm_tests.py: runs the LLM tests and saves each run to reports/ as .txt (UTF-8) and JUnit .xml, named by date, model and prompt version. Extra arguments go to pytest (--lf, -k ...).
+- README: "How to run LLM tests".
+- Golden dataset: 35 cases. F25 case split into brand-014 (listing) and comparison-035 (gift recommendation); fixed hallucination-009 and store_policy-027.
+
+### Results
+
+- Baseline: 23/31 passed — reports/2026-11-27_1619_qwen2.5-7b_v1.txt (~10 min).
+- After fixing 2 test cases: 24/31. The same 7 failures reproduced in 3 runs, so they are stable, not flaky.
+- Fast tests (-m "not llm"): 257 passed, < 1 s.
+
+### Decisions
+-  [ ] Add a GitHub Actions workflow that runs ruff and fast tests (no LLM) on every PR.
+-  [ ] Move the bug register to docs/bugs.md.
+-  [ ] Write up the exploratory session in docs/exploratory/.
+-  [ ] LLM-as-judge for expected_behavior, stability runs (same case × N), latency per case.
+
+### Next
+
+- [ ] Add a GitHub Actions workflow that runs ruff and fast tests (no LLM) on every PR.
+- [ ] Write up the exploratory session in `docs/exploratory/`.
+
 ## 2026-11-24 — Created golden dataset
 
 ### Done

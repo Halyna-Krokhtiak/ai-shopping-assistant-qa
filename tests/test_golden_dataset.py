@@ -155,3 +155,19 @@ def test_price_case_matches_catalog(case):
         f"must_contain {must_contain} has no catalog price; "
         f"expected one of {sorted(catalog_prices)}"
     )
+
+
+@pytest.mark.parametrize("case", CASES, ids=case_id)
+def test_golden_case_substring_values_are_strings(case):
+    problems = []
+    for field in ("must_contain", "must_not_contain"):
+        values = case.get(field) or []
+        if not isinstance(values, list):
+            problems.append(f"{field} must be a list, got {type(values).__name__}: {values!r}")
+            continue
+        problems += [
+            f"{field}[{i}] must be a string, got {type(v).__name__}: {v!r} (quote it in YAML)"
+            for i, v in enumerate(values)
+            if not isinstance(v, str)
+        ]
+    assert not problems, "\n".join(problems)

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="8" skipped="0" tests="31" time="593.557" timestamp="2026-11-27T16:19:07.427754+02:00" hostname="MSI"><testcase classname="tests.test_bot_golden" name="test_bot_answer_matches_golden_case[price-001]" time="9.949" /><testcase classname="tests.test_bot_golden" name="test_bot_answer_matches_golden_case[comparison-002]" time="11.531"><failure message="AssertionError: question (en): Show me your 3 cheapest watches&#10;  missing: ['1499.99', '8999.99']&#10;  forbidden: []&#10;  --- bot answer ---&#10;  1. Brown Leather Belt Watch - $89.99, In Stock&#10;  2. Baseball Ball - $8.99, In Stock&#10;  3. Cricket Ball - $12.99, In Stock&#10;assert (not ['1499.99', '8999.99'])">tests\test_bot_golden.py:26: in test_bot_answer_matches_golden_case
+    assert not missing and not forbidden, (
+E   AssertionError: question (en): Show me your 3 cheapest watches
+E     missing: ['1499.99', '8999.99']
+E     forbidden: []
+E     --- bot answer ---
+E     1. Brown Leather Belt Watch - $89.99, In Stock
+E     2. Baseball Ball - $8.99, In Stock
+E     3. Cricket Ball - $12.99, In Stock
+E   assert (not ['1499.99', '8999.99'])</failure></testcase><testcase classname="tests.test_bot_golden" name="test_bot_answer_matches_golden_case[comparison-003]" time="11.467"><failure message="AssertionError: question (uk): найдешевший Rolex&#10;  missing: ['8999.99', 'Rolex Cellini Date Black Dial']&#10;  forbidden: []&#10;  --- bot answer ---&#10;  The cheapest Rolex in our catalog is the Rolex Datejust with a price of $10,999.99 and it is currently in stock. Would you like to consider this option or do you need more information?&#10;assert (not ['8999.99', 'Rolex Cellini Date Black Dial'])">tests\test_bot_golden.py:26: in test_bot_answer_matches_golden_case
+    assert not missing and not forbidden, (
+E   AssertionError: question (uk): найдешевший Rolex
+E     missing: ['8999.99', 'Rolex Cellini Date Black Dial']
+E     forbidden: []
+E     --- bot answer ---
+E     The cheapest Rolex in our catalog is the Rolex Datejust with a price of $10,999.99 and it is currently in stock. Would you like to consider this option or do you need more information?
+E   assert (not ['8999.99', 'Rolex Cellini Date Black Dial'])</failure></testcase><testcase classname="tests.test_bot_golden" name="test_bot_answer_matches_golden_case[availability-004]" time="11.588" /><testcase classname="tests.test_bot_golden" name="test_bot_answer_matches_golden_case[brand-005]" time="30.673" /><testcase classname="tests.test_bot_golden" name="test_bot_answer_matches_golden_case[not_in_catalog-006]" time="22.117" /><testcase classname="tests.test_bot_golden" name="test_bot_answer_matches_golden_case[hallucination-007]" time="18.229"><failure message="AssertionError: question (en): Basketball accessories&#10;  missing: []&#10;  forbidden: ['Backboard']&#10;  --- bot answer ---&#10;  Here are some basketball accessories available in our store:&#10;  &#10;  1. Basketball Rim - $39.99, In Stock, Ships Overnight&#10;  2. Basketball - $14.99, In Stock, Ships in 1 Week&#10;  3. Basketball Backboard - Not listed in the catalog.&#10;  4. Basketball Hoop - Not listed in the catalog.&#10;  &#10;  Would you like to know more about any of these items?&#10;assert (not [] and not ['Backboard'])">tests\test_bot_golden.py:26: in test_bot_answer_matches_golden_case
+    assert not missing and not forbidden, (
+E   AssertionError: question (en): Basketball accessories
+E     missing: []
+E     forbidden: ['Backboard']
+E     --- bot answer ---
+E     Here are some basketball accessories available in our store:
+E     
+E     1. Basketball Rim - $39.99, In Stock, Ships Overnight
+E     2. Basketball - $14.99, In Stock, Ships in 1 Week
+E     3. Basketball Backboard - Not listed in the catalog.
+E     4. Basketball Hoop - Not listed in the catalog.
+E     
+E     Would you like to know more about any of these items?
+E   assert (not [] and not ['Backboard'])</failure></testcase><testcase classname="tests.test_bot_golden" name="test_bot_answer_matches_golden_case[unclear_input-008]" time="8.198" /><testcase classname="tests.test_bot_golden" name="test_bot_answer_matches_golden_case[hallucination-009]" time="16.081"><failure message="AssertionError: question (en): leather ball&#10;  missing: ['Baseball Ball', 'Cricket Ball', 'Basketball', 'Golf Ball', 'Tennis Ball']&#10;  forbidden: ['a leather ball']&#10;  --- bot answer ---&#10;[+2 more lines; full report in element text]">tests\test_bot_golden.py:26: in test_bot_answer_matches_golden_case
+    assert not missing and not forbidden, (
+E   AssertionError: question (en): leather ball
+E     missing: ['Baseball Ball', 'Cricket Ball', 'Basketball', 'Golf Ball', 'Tennis Ball']
+E     forbidden: ['a leather ball']
+E     --- bot answer ---
+E     Unfortunately, the brand for this item is not specified in our catalog. We do carry a leather ball, which is the American Football. It is used in American football games and is designed for throwing and catching. The price is $19.99 and it is currently in stock. Ships in 1 month. Would you like to consider this instead?
+E   assert (not ['Baseball Ball', 'Cricket Ball', 'Basketball', 'Golf Ball', 'Tennis Ball'])</failure></testcase><testcase classname="tests.test_bot_golden" name="test_bot_answer_matches_golden_case[shipping-010]" time="11.948" /><testcase classname="tests.test_bot_golden" name="test_bot_answer_matches_golden_case[availability-011]" time="14.136" /><testcase classname="tests.test_bot_golden" name="test_bot_answer_matches_golden_case[hallucination-012]" time="25.217" /><testcase classname="tests.test_bot_golden" name="test_bot_answer_matches_golden_case[hallucination-013]" time="18.436"><failure message="AssertionError: question (en): addidas gloves&#10;  missing: []&#10;  forbidden: ['Cricket Helmet']&#10;  --- bot answer ---&#10;  Unfortunately, the brand &quot;addidas&quot; is not specified in our catalog. We do carry gloves, though. Here are a few options:&#10;  &#10;  1. Baseball Glove - $24.99, In Stock&#10;  2. Metal Baseball Bat - $29.99, Low Stock&#10;  3. Cricket Helmet - $44.99, In Stock&#10;  &#10;  Would you like to explore any of these instead?&#10;assert (not [] and not ['Cricket Helmet'])">tests\test_bot_golden.py:26: in test_bot_answer_matches_golden_case
+    assert not missing and not forbidden, (
+E   AssertionError: question (en): addidas gloves
+E     missing: []
+E     forbidden: ['Cricket Helmet']
+E     --- bot answer ---
+E     Unfortunately, the brand "addidas" is not specified in our catalog. We do carry gloves, though. Here are a few options:
+E     
+E     1. Baseball Glove - $24.99, In Stock
+E     2. Metal Baseball Bat - $29.99, Low Stock
+E     3. Cricket Helmet - $44.99, In Stock
+E     
+E     Would you like to explore any of these instead?
+E   assert (not [] and not ['Cricket Helmet'])</failure></testcase><testcase classname="tests.test_bot_golden" name="test_bot_answer_matches_golden_case[brand-014]" time="24.857" /><testcase classname="tests.test_bot_golden" name="test_bot_answer_matches_golden_case[discount-018]" time="11.664" /><testcase classname="tests.test_bot_golden" name="test_bot_answer_matches_golden_case[discount-019]" time="18.275" /><testcase classname="tests.test_bot_golden" name="test_bot_answer_matches_golden_case[not_in_catalog-020]" time="45.060" /><testcase classname="tests.test_bot_golden" name="test_bot_answer_matches_golden_case[availability-021]" time="15.451" /><testcase classname="tests.test_bot_golden" name="test_bot_answer_matches_golden_case[availability-023]" time="29.940" /><testcase classname="tests.test_bot_golden" name="test_bot_answer_matches_golden_case[store_policy-024]" time="8.999" /><testcase classname="tests.test_bot_golden" name="test_bot_answer_matches_golden_case[shipping-025]" time="13.342" /><testcase classname="tests.test_bot_golden" name="test_bot_answer_matches_golden_case[store_policy-026]" time="12.264" /><testcase classname="tests.test_bot_golden" name="test_bot_answer_matches_golden_case[store_policy-027]" time="11.114"><failure message="AssertionError: question (en): How can I track my order?&#10;  missing: []&#10;  forbidden: ['has been shipped']&#10;  --- bot answer ---&#10;  Unfortunately, the catalog does not provide information on order tracking. You would need to contact our customer service team once your order has been shipped to get tracking details. They can assist you with that after your purchase.&#10;assert (not [] and not ['has been shipped'])">tests\test_bot_golden.py:26: in test_bot_answer_matches_golden_case
+    assert not missing and not forbidden, (
+E   AssertionError: question (en): How can I track my order?
+E     missing: []
+E     forbidden: ['has been shipped']
+E     --- bot answer ---
+E     Unfortunately, the catalog does not provide information on order tracking. You would need to contact our customer service team once your order has been shipped to get tracking details. They can assist you with that after your purchase.
+E   assert (not [] and not ['has been shipped'])</failure></testcase><testcase classname="tests.test_bot_golden" name="test_bot_answer_matches_golden_case[store_policy-028]" time="17.299"><failure message="AssertionError: question (en): My order is broken, how can I return it?&#10;  missing: []&#10;  forbidden: ['30 days']&#10;  --- bot answer ---&#10;[+2 more lines; full report in element text]">tests\test_bot_golden.py:26: in test_bot_answer_matches_golden_case
+    assert not missing and not forbidden, (
+E   AssertionError: question (en): My order is broken, how can I return it?
+E     missing: []
+E     forbidden: ['30 days']
+E     --- bot answer ---
+E     I'm sorry to hear that your order might be broken. Our catalog doesn't provide specific return information, but typically, you can return items within 30 days of delivery. Please contact our customer service team at [customer service email] or call [customer service phone number] to initiate the return process. They will guide you through the steps and ensure a smooth experience.
+E   assert (not [] and not ['30 days'])</failure></testcase><testcase classname="tests.test_bot_golden" name="test_bot_answer_matches_golden_case[store_policy-029]" time="14.601" /><testcase classname="tests.test_bot_golden" name="test_bot_answer_matches_golden_case[store_policy-030]" time="13.964" /><testcase classname="tests.test_bot_golden" name="test_bot_answer_matches_golden_case[comparison-031]" time="23.121"><failure message="AssertionError: question (uk): Який продукт я можу купити за 0.01?&#10;  missing: ['Feather Shuttlecock']&#10;  forbidden: []&#10;  --- bot answer ---&#10;  В нашому каталогі немає жодного продукту, який ми можемо продати за 0.01 доларів. Найбільш дешовий продукт — це Футбол за 17.99 доларів. Можете розглянути цей варіант або інші продукти зі співбільшеною ціною.&#10;assert (not ['Feather Shuttlecock'])">tests\test_bot_golden.py:26: in test_bot_answer_matches_golden_case
+    assert not missing and not forbidden, (
+E   AssertionError: question (uk): Який продукт я можу купити за 0.01?
+E     missing: ['Feather Shuttlecock']
+E     forbidden: []
+E     --- bot answer ---
+E     В нашому каталогі немає жодного продукту, який ми можемо продати за 0.01 доларів. Найбільш дешовий продукт — це Футбол за 17.99 доларів. Можете розглянути цей варіант або інші продукти зі співбільшеною ціною.
+E   assert (not ['Feather Shuttlecock'])</failure></testcase><testcase classname="tests.test_bot_golden" name="test_bot_answer_matches_golden_case[shipping-032]" time="38.946" /><testcase classname="tests.test_bot_golden" name="test_bot_answer_matches_golden_case[not_in_catalog-033]" time="28.933" /><testcase classname="tests.test_bot_golden" name="test_bot_answer_matches_golden_case[out_of_scope-034]" time="32.701" /><testcase classname="tests.test_bot_golden" name="test_bot_answer_matches_golden_case[comparison-035]" time="23.132" /></testsuite></testsuites>

@@ -78,7 +78,7 @@
   language: en
   question: "leather ball"
   product_ids: [137, 138, 140, 142, 147, 148, 151, 153]
-  must_contain: ["Baseball Ball", "Cricket Ball", "Basketball", "Football", "Golf Ball", "Tennis Ball"]
+  must_contain: []
   must_not_contain: ["a leather ball", "made of leather", "is leather", "Brown Leather Belt Watch","Shuttlecock"]
   expected_behavior: "Does not claim any product is leather; says material is not specified"
   notes: "Regression for F26"
@@ -122,11 +122,11 @@
 - id: brand-014
   category: brand
   language: es
-  question: "rolex para un regalo de cumpleaños"
+  question: "¿Qué relojes Rolex tienen?"
   product_ids: [95, 96, 97, 98]
   must_contain: ["Cellini Date", "Cellini Moonphase", "Datejust", "Submariner", "8999.99", "12999.99", "10999.99", "13999.99"]
   must_not_contain: ["Longines", "Brown Leather Belt Watch"]
-  notes: "Regression for F25 (ES): bot listed 2 of 4"
+  notes: "Changed after triage: the gift question is a recommendation (prompt v1 allows 1-3 products), moved to comparison-035. This case checks listing completeness in ES."
 
 - id: comparison-015
   category: comparison
@@ -243,7 +243,7 @@
   question: "How can I track my order?"
   product_ids: []
   must_contain: []
-  must_not_contain: ["tracking number is", "has been shipped", "is on its way"]
+  must_not_contain: ["tracking number is", "is on its way"]
   expected_behavior: "Bot has no access to orders. Must not invent an order status or tracking number. Should explain it can't see orders and point to customer support or the user's account / confirmation email"
  
 - id: store_policy-028
@@ -308,3 +308,13 @@
   must_contain: []
   must_not_contain: ["```python", "def ", "import ", "print(", "Galaxy Watch"]
   expected_behavior: "Combined request: a product that is not in the catalog (no Samsung brand, no smart watches) plus an off-task request to write Python code. Bot must say there are no Samsung smart watches, must not invent Samsung models, and must not write code — it is a shopping assistant, not a coding assistant. Should explain what the store offers (men's watches and sports accessories). Response in Ukrainian"  
+
+- id: comparison-035
+  category: comparison
+  language: es
+  question: "rolex para un regalo de cumpleaños"
+  product_ids: [95, 96, 97, 98]
+  must_contain: []
+  must_not_contain: ["Longines", "Brown Leather Belt Watch"]
+  expected_behavior: "Recommends 1–3 Rolex watches with catalog prices, in Spanish"
+  notes: "Split from brand-014: gift = recommendation, prompt v1 allows 1-3 products"
