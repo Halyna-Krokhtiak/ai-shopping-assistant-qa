@@ -1,0 +1,110 @@
+$ D:\claude\ai-shopping-assistant-qa\.venv\Scripts\python.exe -m pytest -m llm -rfs --tb=short --junitxml=D:\claude\ai-shopping-assistant-qa\reports\2026-11-27_1619_qwen2.5-7b_v1.xml
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.17, pytest-9.2.0, pluggy-1.7.0
+rootdir: D:\claude\ai-shopping-assistant-qa
+configfile: pyproject.toml
+testpaths: tests
+collected 288 items / 257 deselected / 31 selected
+
+tests\test_bot_golden.py .FF...F.F...F.........FF..F....                 [100%]
+
+================================== FAILURES ===================================
+_____________ test_bot_answer_matches_golden_case[comparison-002] _____________
+tests\test_bot_golden.py:26: in test_bot_answer_matches_golden_case
+    assert not missing and not forbidden, (
+E   AssertionError: question (en): Show me your 3 cheapest watches
+E     missing: ['1499.99', '8999.99']
+E     forbidden: []
+E     --- bot answer ---
+E     1. Brown Leather Belt Watch - $89.99, In Stock
+E     2. Baseball Ball - $8.99, In Stock
+E     3. Cricket Ball - $12.99, In Stock
+E   assert (not ['1499.99', '8999.99'])
+_____________ test_bot_answer_matches_golden_case[comparison-003] _____________
+tests\test_bot_golden.py:26: in test_bot_answer_matches_golden_case
+    assert not missing and not forbidden, (
+E   AssertionError: question (uk): найдешевший Rolex
+E     missing: ['8999.99', 'Rolex Cellini Date Black Dial']
+E     forbidden: []
+E     --- bot answer ---
+E     The cheapest Rolex in our catalog is the Rolex Datejust with a price of $10,999.99 and it is currently in stock. Would you like to consider this option or do you need more information?
+E   assert (not ['8999.99', 'Rolex Cellini Date Black Dial'])
+___________ test_bot_answer_matches_golden_case[hallucination-007] ____________
+tests\test_bot_golden.py:26: in test_bot_answer_matches_golden_case
+    assert not missing and not forbidden, (
+E   AssertionError: question (en): Basketball accessories
+E     missing: []
+E     forbidden: ['Backboard']
+E     --- bot answer ---
+E     Here are some basketball accessories available in our store:
+E     
+E     1. Basketball Rim - $39.99, In Stock, Ships Overnight
+E     2. Basketball - $14.99, In Stock, Ships in 1 Week
+E     3. Basketball Backboard - Not listed in the catalog.
+E     4. Basketball Hoop - Not listed in the catalog.
+E     
+E     Would you like to know more about any of these items?
+E   assert (not [] and not ['Backboard'])
+___________ test_bot_answer_matches_golden_case[hallucination-009] ____________
+tests\test_bot_golden.py:26: in test_bot_answer_matches_golden_case
+    assert not missing and not forbidden, (
+E   AssertionError: question (en): leather ball
+E     missing: ['Baseball Ball', 'Cricket Ball', 'Basketball', 'Golf Ball', 'Tennis Ball']
+E     forbidden: ['a leather ball']
+E     --- bot answer ---
+E     Unfortunately, the brand for this item is not specified in our catalog. We do carry a leather ball, which is the American Football. It is used in American football games and is designed for throwing and catching. The price is $19.99 and it is currently in stock. Ships in 1 month. Would you like to consider this instead?
+E   assert (not ['Baseball Ball', 'Cricket Ball', 'Basketball', 'Golf Ball', 'Tennis Ball'])
+___________ test_bot_answer_matches_golden_case[hallucination-013] ____________
+tests\test_bot_golden.py:26: in test_bot_answer_matches_golden_case
+    assert not missing and not forbidden, (
+E   AssertionError: question (en): addidas gloves
+E     missing: []
+E     forbidden: ['Cricket Helmet']
+E     --- bot answer ---
+E     Unfortunately, the brand "addidas" is not specified in our catalog. We do carry gloves, though. Here are a few options:
+E     
+E     1. Baseball Glove - $24.99, In Stock
+E     2. Metal Baseball Bat - $29.99, Low Stock
+E     3. Cricket Helmet - $44.99, In Stock
+E     
+E     Would you like to explore any of these instead?
+E   assert (not [] and not ['Cricket Helmet'])
+____________ test_bot_answer_matches_golden_case[store_policy-027] ____________
+tests\test_bot_golden.py:26: in test_bot_answer_matches_golden_case
+    assert not missing and not forbidden, (
+E   AssertionError: question (en): How can I track my order?
+E     missing: []
+E     forbidden: ['has been shipped']
+E     --- bot answer ---
+E     Unfortunately, the catalog does not provide information on order tracking. You would need to contact our customer service team once your order has been shipped to get tracking details. They can assist you with that after your purchase.
+E   assert (not [] and not ['has been shipped'])
+____________ test_bot_answer_matches_golden_case[store_policy-028] ____________
+tests\test_bot_golden.py:26: in test_bot_answer_matches_golden_case
+    assert not missing and not forbidden, (
+E   AssertionError: question (en): My order is broken, how can I return it?
+E     missing: []
+E     forbidden: ['30 days']
+E     --- bot answer ---
+E     I'm sorry to hear that your order might be broken. Our catalog doesn't provide specific return information, but typically, you can return items within 30 days of delivery. Please contact our customer service team at [customer service email] or call [customer service phone number] to initiate the return process. They will guide you through the steps and ensure a smooth experience.
+E   assert (not [] and not ['30 days'])
+_____________ test_bot_answer_matches_golden_case[comparison-031] _____________
+tests\test_bot_golden.py:26: in test_bot_answer_matches_golden_case
+    assert not missing and not forbidden, (
+E   AssertionError: question (uk): Який продукт я можу купити за 0.01?
+E     missing: ['Feather Shuttlecock']
+E     forbidden: []
+E     --- bot answer ---
+E     В нашому каталогі немає жодного продукту, який ми можемо продати за 0.01 доларів. Найбільш дешовий продукт — це Футбол за 17.99 доларів. Можете розглянути цей варіант або інші продукти зі співбільшеною ціною.
+E   assert (not ['Feather Shuttlecock'])
+- generated xml file: D:\claude\ai-shopping-assistant-qa\reports\2026-11-27_1619_qwen2.5-7b_v1.xml -
+=========================== short test summary info ===========================
+FAILED tests/test_bot_golden.py::test_bot_answer_matches_golden_case[comparison-002]
+FAILED tests/test_bot_golden.py::test_bot_answer_matches_golden_case[comparison-003]
+FAILED tests/test_bot_golden.py::test_bot_answer_matches_golden_case[hallucination-007]
+FAILED tests/test_bot_golden.py::test_bot_answer_matches_golden_case[hallucination-009]
+FAILED tests/test_bot_golden.py::test_bot_answer_matches_golden_case[hallucination-013]
+FAILED tests/test_bot_golden.py::test_bot_answer_matches_golden_case[store_policy-027]
+FAILED tests/test_bot_golden.py::test_bot_answer_matches_golden_case[store_policy-028]
+FAILED tests/test_bot_golden.py::test_bot_answer_matches_golden_case[comparison-031]
+========== 8 failed, 23 passed, 257 deselected in 593.75s (0:09:53) ===========

@@ -37,3 +37,7 @@ select = ["E", "F", "W", "I", "UP", "B"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+markers = [
+    "llm: calls the real LLM (slow, needs Ollama running); run with -m llm",
+]
