@@ -1,3 +1,9 @@
+"""Ask the real bot every golden case and check the answer.
+
+Slow: calls the LLM, needs Ollama running. Marked `llm`, so it runs
+only with `-m llm` or `python scripts/run_llm_tests.py`.
+"""
+
 import pytest
 
 from bot.bot import ask

@@ -34,10 +34,10 @@ Newest entries go on top.
 
 ### Next
 
--  [ ] Add a GitHub Actions workflow that runs ruff and fast tests (no LLM) on every PR.
--  [ ] Move the bug register to docs/bugs.md.
--  [ ] Write up the exploratory session in docs/exploratory/.
--  [ ] LLM-as-judge for expected_behavior, stability runs (same case × N), latency per case.
+- [ ] Add a GitHub Actions workflow that runs ruff and fast tests (no LLM) on every PR.
+- [ ] Move the bug register to docs/bugs.md.
+- [ ] Write up the exploratory session in docs/exploratory/.
+- [ ] LLM-as-judge for expected_behavior, stability runs (same case × N), latency per case.
 
 ## 2026-11-24 — Created golden dataset
 

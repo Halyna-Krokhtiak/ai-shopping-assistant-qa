@@ -17,7 +17,6 @@ from tests.golden import normalize
         ("1399999", "1399999"),
         ("OUT OF STOCK", "out of stock"),
         ("out of stock", "out of stock"),
-        ("out of stock", "out of stock"),
         ("1,2,3", "1,2,3"),
         ("Rolex, Longines", "rolex, longines"),
         ("rolex$%^&*!@", "rolex$%^&*!@"),
