@@ -5,7 +5,6 @@ a bug here would make every price check lie.
 """
 
 import pytest
-import os
 
 from tests.golden import normalize
 
