@@ -17,6 +17,7 @@ Newest entries go on top.
 
 - Locally: 256 passed, 1.47 s.
 - CI: green, 256 passed, job 11 s
+- CI fails when it should: unused import → red on Lint (F401, I001); duplicated case id → red on Fast tests (2 failed); later steps do not run after a failed step.
 
 ### Decisions
 
