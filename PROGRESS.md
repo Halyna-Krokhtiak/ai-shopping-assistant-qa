@@ -16,7 +16,7 @@ Newest entries go on top.
 ### Results
 
 - Locally: 256 passed, 1.47 s.
-- CI: _to be filled after the first run._
+- CI: green, 256 passed, job 11 s
 
 ### Decisions
 
