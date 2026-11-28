@@ -10,7 +10,7 @@
   must_not_contain: []
   notes: "Most expensive item in the catalog"
 
-- id: comparison-002
+- id: price-001
   category: comparison
   question: "Show me your 3 cheapest watches"
   product_ids: [93, 94, 95]
