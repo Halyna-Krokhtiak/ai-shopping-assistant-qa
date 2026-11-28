@@ -1,6 +1,8 @@
 # ai-shopping-assistant-qa
 Automated testing of an LLM chatbot for e-commerce: accuracy, hallucinations, security, regression. Python + pytest + Ollama.
 
+[![CI](https://github.com/Halyna-Krokhtiak/ai-shopping-assistant-qa/actions/workflows/ci.yml/badge.svg)](https://github.com/Halyna-Krokhtiak/ai-shopping-assistant-qa/actions/workflows/ci.yml)
+
 ## How to run LLM tests
 
 The tests are split by cost:

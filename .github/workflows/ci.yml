@@ -1,0 +1,47 @@
+# CI: runs on every pull request and on every push to main.
+# Only fast checks: lint + tests that do not need Ollama (-m "not llm").
+
+name: CI
+
+on:
+  pull_request:
+  # run on push to the main branch only
+  push:
+    branches: [main]
+
+# The workflow only reads the code, it never writes to the repo.
+permissions:
+  contents: read
+
+jobs:
+  lint-and-fast-tests:
+    runs-on: ubuntu-latest
+    # Safety net: if something hangs, stop after 10 minutes instead of 6 hours.
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          # the same Python version as requires-python in pyproject.toml (in quotes!)
+          python-version: "3.13"
+          # Reuse downloaded packages between runs, so installs are faster.
+          cache: pip
+
+      - name: Install the project with dev tools
+        # the same install command as in the README
+        run: pip install -e ".[dev]"
+
+      - name: Lint
+        # ruff lint check
+        run: ruff check .
+
+      - name: Check formatting
+        # ruff format, but only check, do not change files
+        run: ruff format --check .
+
+      - name: Fast tests (no LLM)
+        run: pytest -m "not llm" -rs
