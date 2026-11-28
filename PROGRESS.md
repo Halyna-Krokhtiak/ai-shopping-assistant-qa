@@ -5,6 +5,33 @@ Newest entries go on top.
 
 ---
 
+## 2026-11-28 - GitHub Actions workflow
+
+### Done
+
+- `.github/workflows/ci.yml`: on every PR and every push to `main` runs `ruff check`, `ruff format --check` and `pytest -m "not llm"` on a clean Ubuntu runner (Python 3.13).
+- CI status badge in README.
+- Removed `.github/workflows/.gitkeep`.
+
+### Results
+
+- Locally: 256 passed, 1.47 s.
+- CI: green, 256 passed, job 11 s
+- CI fails when it should: unused import → red on Lint (F401, I001); duplicated case id → red on Fast tests (2 failed); later steps do not run after a failed step.
+
+### Decisions
+
+- **No LLM tests in CI:** no Ollama on GitHub runners, ~10 min per run, and nondeterministic answers would block merges for the wrong reasons. LLM tests run manually via `scripts/run_llm_tests.py`.
+- **Clean install from README** (`pip install -e ".[dev]"`): if CI can install the project, the README instructions are correct.
+- **Push to `main` too:** two green PRs can still break `main` together.
+- **Format check in CI:** formatting is enforced for everyone, not only in one editor.
+
+### Next
+
+- [ ] Move the bug register to docs/bugs.md.
+- [ ] Write up the exploratory session in docs/exploratory/.
+- [ ] LLM-as-judge for expected_behavior, stability runs (same case × N), latency per case.
+
 ## 2026-11-27 - First automated bot tests and run reports
 
 ### Done
